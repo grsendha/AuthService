@@ -54,6 +54,14 @@ const signIn = async (req, res) => {
   }
 }
 
+const isAuthenticated = async (req, res) => {
+  const token = req.headers['x-access-token'];
+  const response = userService.isAuthenticated(token);
+  return res.status(200).json({
+    message: "user is authenticated"
+  });
+}
+
 module.exports = {
-  create, destroy, signIn
+  create, destroy, signIn, isAuthenticated
 }

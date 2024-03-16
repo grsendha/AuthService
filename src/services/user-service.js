@@ -84,6 +84,22 @@ class UserService {
       throw new Error("Error in checkPassword method");
     }
   }
+
+  async isAuthenticated(token) {
+    const response = this.verifyToken(token);
+    if (!response) {
+      throw {
+        message: 'token verification failed'
+      }
+    }
+    const user = this.userRepository.getById(response.id);
+    if (!user) {
+      throw {
+        message: 'user not found'
+      }
+    }
+    return user.id;
+  }
 }
 
 module.exports = UserService;
