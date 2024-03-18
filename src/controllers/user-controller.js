@@ -61,7 +61,25 @@ const isAuthenticated = async (req, res) => {
     message: "user is authenticated"
   });
 }
+const isAdmin = async (req, res) => {
+  try {
+    const response = await userService.isAdmin(req.body.id);
+    res.status(200).json({
+      success: true,
+      data: response,
+      message: 'Successfull',
+      error: null,
+    });
+  } catch (error) {
+    res.status(500).json({ error: 'Something went wrong in user-controller' });
+  }
+
+}
 
 module.exports = {
-  create, destroy, signIn, isAuthenticated
+  create,
+  destroy,
+  signIn,
+  isAuthenticated,
+  isAdmin,
 }

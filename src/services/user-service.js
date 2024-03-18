@@ -100,6 +100,10 @@ class UserService {
     }
     return user.id;
   }
+
+  isAdmin(userId) {
+    return this.userRepository.isAdmin(userId);
+  }
 }
 
 module.exports = UserService;
