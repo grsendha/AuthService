@@ -18,7 +18,12 @@ const create = async (req, res) => {
       error: null,
     });
   } catch (error) {
-    res.status(500).json({ error: 'Something went wrong in user-controller' });
+    res.status(error.statusCode).json({
+      message: error.message,
+      data: null,
+      success: false,
+      err: error.explanation
+    });
   }
 
 

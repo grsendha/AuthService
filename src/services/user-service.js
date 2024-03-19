@@ -15,6 +15,9 @@ class UserService {
 
       return user;
     } catch (error) {
+      if (error.name === 'SequelizeValidationError') {
+        throw error;
+      }
       console.log("something went wrong", error);
     }
   }
